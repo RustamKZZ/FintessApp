@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="exercise">
+        <item>Relax|20|relax.gif </item> <!-- 0 -->
+        <item>Press|x10|press.gif </item> <!-- 1 -->
+        <item>Otjimanie|x10|otjim.gif</item> <!-- 2 -->
+        <item>Prisedanie|x10|prisedanie.gif</item> <!-- 3 -->
+    </string-array>
+    <string-array name="day_exercises">
+        <item>1,0,1,0,1,0,2,0,2,0,2,0,3,0,3,0,3,0 </item> <!-- day 1 -->
+        <item>1,0,1,0,1,0,2,0,2,0,2,0,3,0,3,0,3,0 </item> <!-- day 2 -->
+        <item>1,0,1,0,1,0,2,0,2,0,2,0,3,0,3,0,3,0 </item> <!-- day 3 -->
+        <item>1,0,1,0,1,0,2,0,2,0,2,0,3,0,3,0,3,0 </item> <!-- day 4 -->
+        <item>1,0,1,0,1,0,2,0,2,0,2,0,3,0,3,0,3,0 </item> <!-- day 5 -->
+        <item>1,0,1,0,1,0,2,0,2,0,2,0,3,0,3,0,3,0 </item> <!-- day 6 -->
+
+    </string-array>
+</resources>
