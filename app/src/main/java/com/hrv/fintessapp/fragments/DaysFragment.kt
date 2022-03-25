@@ -6,6 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.activityViewModels
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.hrv.fintessapp.R
 import com.hrv.fintessapp.adapters.DayModel
@@ -13,10 +14,12 @@ import com.hrv.fintessapp.adapters.DaysAdapter
 import com.hrv.fintessapp.adapters.ExerciseModel
 import com.hrv.fintessapp.databinding.FragmentDaysBinding
 import com.hrv.fintessapp.utils.FragmentManager
+import com.hrv.fintessapp.utils.MainViewModel as MainViewModel1
 
 
 class DaysFragment : Fragment(), DaysAdapter.Listener {
     private lateinit var binding: FragmentDaysBinding
+    private val model: MainViewModel1 by activityViewModels()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -55,6 +58,8 @@ class DaysFragment : Fragment(), DaysAdapter.Listener {
             val exerciseArray = exercise.split("|")
             tempList.add(ExerciseModel(exerciseArray[0], exerciseArray[1], exerciseArray[2]))
         }
+        model.mutableListExercise.value = tempList
+
 
     }
 
