@@ -1,6 +1,8 @@
 <resources>
     <string name="app_name">FintessApp</string>
     <string name="slogan">На пути к совершенству</string>
+    <string name="day">День</string>
+    <string name="exercises">Упражнений</string>
 
 
 </resources>
