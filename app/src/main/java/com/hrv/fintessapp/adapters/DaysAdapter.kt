@@ -9,26 +9,27 @@ import androidx.recyclerview.widget.RecyclerView
 import com.hrv.fintessapp.R
 import com.hrv.fintessapp.databinding.DaysListItemBinding
 
-class DaysAdapter: ListAdapter <DayModel, DaysAdapter.DayHolder> (MyComparator()){
+class DaysAdapter(var listener: Listener): ListAdapter <DayModel, DaysAdapter.DayHolder> (MyComparator()){
 
     class DayHolder(view: View) : RecyclerView.ViewHolder(view) {
         private val binding = DaysListItemBinding.bind(view)
-        fun setData(day: DayModel) = with(binding) {
+
+        fun setData(day: DayModel, listener: Listener) = with(binding) {
             val name = root.context.getString(R.string.day) + " ${adapterPosition + 1}"
             tvName.text = name
             val exCounter = day.exercises.split(",").size.toString() + " " + root.context.getString(R.string.exercises)
             tvExCounter.text = exCounter
+            itemView.setOnClickListener {listener.onClick(day)}
         }
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): DayHolder {
-        val view =
-            LayoutInflater.from(parent.context).inflate(R.layout.days_list_item, parent, false)
+        val view = LayoutInflater.from(parent.context).inflate(R.layout.days_list_item, parent, false)
         return DayHolder(view)
     }
 
     override fun onBindViewHolder(holder: DayHolder, position: Int) {
-        holder.setData(getItem(position))
+        holder.setData(getItem(position), listener)
     }
 
     class MyComparator : DiffUtil.ItemCallback<DayModel>() {
@@ -40,6 +41,8 @@ class DaysAdapter: ListAdapter <DayModel, DaysAdapter.DayHolder> (MyComparator()
             return oldItem == newItem
         }
 
-
+    }
+    interface Listener{
+        fun onClick(day: DayModel)
     }
 }
