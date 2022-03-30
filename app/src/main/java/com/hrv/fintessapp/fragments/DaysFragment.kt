@@ -19,12 +19,11 @@ import com.hrv.fintessapp.utils.MainViewModel as MainViewModel1
 
 class DaysFragment : Fragment(), DaysAdapter.Listener {
     private lateinit var binding: FragmentDaysBinding
-    private val model: MainViewModel1 by activityViewModels()
+    private val model: com.hrv.fintessapp.utils.MainViewModel by activityViewModels()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View {
+        savedInstanceState: Bundle?): View {
         binding = FragmentDaysBinding.inflate(inflater, container, false)
         return binding.root
     }
@@ -71,7 +70,8 @@ class DaysFragment : Fragment(), DaysAdapter.Listener {
     }
 
     override fun onClick(day: DayModel) {
-        FragmentManager.setFragment(ExercisesListFragment.newInstance(), activity as AppCompatActivity )
+        FragmentManager.setFragment(ExercisesListFragment.newInstance(), activity as AppCompatActivity)
+        fillExerciseList(day)
 
     }
 }
