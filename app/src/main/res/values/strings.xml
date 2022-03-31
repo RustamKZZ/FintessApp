@@ -4,6 +4,6 @@
     <string name="day">День</string>
     <string name="exercises">Упражнений</string>
     <string name="waiting_message">Упражнениe начнется через:</string>
-
+    <string name="button_text">Начать</string>
 
 </resources>

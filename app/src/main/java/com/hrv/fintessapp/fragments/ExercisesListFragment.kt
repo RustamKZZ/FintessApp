@@ -14,6 +14,7 @@ import com.hrv.fintessapp.adapters.DaysAdapter
 import com.hrv.fintessapp.adapters.ExerciseAdapter
 import com.hrv.fintessapp.databinding.ExercisesListFragmentBinding
 import com.hrv.fintessapp.databinding.FragmentDaysBinding
+import com.hrv.fintessapp.utils.FragmentManager
 import com.hrv.fintessapp.utils.MainViewModel
 
 
@@ -43,6 +44,10 @@ class ExercisesListFragment : Fragment() {
         adapter = ExerciseAdapter()
         rcView.layoutManager = LinearLayoutManager(activity)
         rcView.adapter = adapter
+        bStart.setOnClickListener{
+            FragmentManager.setFragment(WaitingFragment.newInstance(),
+                activity as AppCompatActivity)
+        }
     }
 
     companion object {

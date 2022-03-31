@@ -5,18 +5,11 @@ import android.os.CountDownTimer
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.appcompat.app.AppCompatActivity
+import android.widget.Toast
 import androidx.fragment.app.Fragment
-import androidx.fragment.app.activityViewModels
-import androidx.recyclerview.widget.LinearLayoutManager
-import com.hrv.fintessapp.R
-import com.hrv.fintessapp.adapters.DayModel
-import com.hrv.fintessapp.adapters.DaysAdapter
-import com.hrv.fintessapp.adapters.ExerciseAdapter
-import com.hrv.fintessapp.databinding.ExercisesListFragmentBinding
-import com.hrv.fintessapp.databinding.FragmentDaysBinding
 import com.hrv.fintessapp.databinding.WaitingFragmentBinding
-import com.hrv.fintessapp.utils.MainViewModel
+import com.hrv.fintessapp.utils.TimeUtils
+
 const val COUNT_DOWN_TIME = 11000L
 
 class WaitingFragment : Fragment() {
@@ -25,7 +18,8 @@ class WaitingFragment : Fragment() {
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?): View {
+        savedInstanceState: Bundle?
+    ): View {
         binding = WaitingFragmentBinding.inflate(inflater, container, false)
         return binding.root
     }
@@ -33,17 +27,21 @@ class WaitingFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         binding.pBar.max = COUNT_DOWN_TIME.toInt()
+        startTimer()
 
     }
 
-    private fun StartTimer() = with (binding){
-        timer = object: CountDownTimer(COUNT_DOWN_TIME, 100){
+    private fun startTimer() = with(binding) {
+        timer = object : CountDownTimer(COUNT_DOWN_TIME, 1) {
+
             override fun onTick(restTime: Long) {
+                tvTimer.text = TimeUtils.getTime(restTime)
                 pBar.progress = restTime.toInt()
             }
 
             override fun onFinish() {
-                TODO("Not yet implemented")
+                Toast.makeText(activity, "DONE", Toast.LENGTH_SHORT).show()
+
             }
 
         }.start()
