@@ -5,5 +5,6 @@
     <string name="exercises">Упражнений</string>
     <string name="waiting_message">Упражнениe начнется через:</string>
     <string name="button_text">Начать</string>
+    <string name="button_next">Далее</string>
 
 </resources>
