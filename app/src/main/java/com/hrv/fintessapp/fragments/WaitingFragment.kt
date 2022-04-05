@@ -6,8 +6,10 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import com.hrv.fintessapp.databinding.WaitingFragmentBinding
+import com.hrv.fintessapp.utils.FragmentManager
 import com.hrv.fintessapp.utils.TimeUtils
 
 const val COUNT_DOWN_TIME = 11000L
@@ -40,7 +42,8 @@ class WaitingFragment : Fragment() {
             }
 
             override fun onFinish() {
-                Toast.makeText(activity, "DONE", Toast.LENGTH_SHORT).show()
+                FragmentManager.setFragment(ExercisesFragment.newInstance(),
+                    activity as AppCompatActivity)
 
             }
 
