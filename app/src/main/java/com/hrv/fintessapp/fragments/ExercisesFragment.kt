@@ -6,11 +6,13 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import com.hrv.fintessapp.R
 import com.hrv.fintessapp.adapters.ExerciseModel
 import com.hrv.fintessapp.databinding.ExerciseBinding
+import com.hrv.fintessapp.utils.FragmentManager
 import com.hrv.fintessapp.utils.TimeUtils
 import pl.droidsonroids.gif.GifDrawable
 
@@ -51,7 +53,8 @@ class ExercisesFragment : Fragment() {
             SetExerciseType(ex)
             showNextExercise()
         } else {
-            Toast.makeText(activity, "Done", Toast.LENGTH_SHORT).show()
+            FragmentManager.setFragment(DayFinishFragment.newInstance(),
+                activity as AppCompatActivity )
 
         }
     }
