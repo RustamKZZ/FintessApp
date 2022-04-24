@@ -7,7 +7,6 @@ import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.hrv.fintessapp.R
-import com.hrv.fintessapp.databinding.DaysListItemBinding
 import com.hrv.fintessapp.databinding.ExerciseListItemBinding
 import pl.droidsonroids.gif.GifDrawable
 
@@ -26,7 +25,10 @@ class ExerciseAdapter(): ListAdapter <ExerciseModel, ExerciseAdapter.ExerciseHol
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ExerciseHolder {
         val view =
-            LayoutInflater.from(parent.context).inflate(R.layout.exercise_list_item, parent, false)
+            LayoutInflater.from(parent.context).inflate(
+                R.layout.exercise_list_item, parent,
+                false
+            )
         return ExerciseHolder(view)
     }
 
