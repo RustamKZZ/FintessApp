@@ -6,5 +6,6 @@
     <string name="waiting_message">Упражнениe начнется через:</string>
     <string name="button_text">Начать</string>
     <string name="button_next">Далее</string>
+    <string name="done">На сегодня упражнения выполнены!!!</string>
 
 </resources>

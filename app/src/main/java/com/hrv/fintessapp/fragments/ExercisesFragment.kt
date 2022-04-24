@@ -6,12 +6,11 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
-import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
+import com.hrv.fintessapp.R
 import com.hrv.fintessapp.adapters.ExerciseModel
 import com.hrv.fintessapp.databinding.ExerciseBinding
-import com.hrv.fintessapp.utils.FragmentManager
 import com.hrv.fintessapp.utils.TimeUtils
 import pl.droidsonroids.gif.GifDrawable
 
@@ -50,6 +49,7 @@ class ExercisesFragment : Fragment() {
             val ex = exList?.get(exerciseCounter++) ?: return
             showExercise(ex)
             SetExerciseType(ex)
+            showNextExercise()
         } else {
             Toast.makeText(activity, "Done", Toast.LENGTH_SHORT).show()
 
@@ -67,6 +67,28 @@ class ExercisesFragment : Fragment() {
             binding.tvTime.text = exercise.time
         }else{
             startTimer(exercise)
+
+        }
+    }
+
+    private fun showNextExercise() = with(binding) {
+        if (exerciseCounter < exList?.size!!) {
+            val ex = exList?.get(exerciseCounter) ?: return
+            imNext.setImageDrawable(GifDrawable(root.context.assets, ex.image))
+            setTimeType(ex)
+
+        } else {
+            imNext.setImageDrawable(GifDrawable(root.context.assets, "done.gif"))
+            tvNextName.text = getString(R.string.done)
+        }
+    }
+
+    private fun setTimeType(ex: ExerciseModel) {
+        if (ex.time.startsWith("x")) {
+            binding.tvNextName.text = ex.time
+        } else {
+            val name = ex.name + ": ${TimeUtils.getTime(ex.time.toLong() * 1000)}"
+            binding.tvNextName.text = name
 
         }
     }
