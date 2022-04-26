@@ -1,23 +1,21 @@
 package com.hrv.fintessapp.fragments
 
 import android.os.Bundle
-import android.os.CountDownTimer
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
+import androidx.appcompat.app.ActionBar
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
+import com.hrv.fintessapp.R
 import com.hrv.fintessapp.databinding.DayFinishFragmentBinding
-import com.hrv.fintessapp.databinding.DaysListItemBinding
-import com.hrv.fintessapp.databinding.WaitingFragmentBinding
 import com.hrv.fintessapp.utils.FragmentManager
-import com.hrv.fintessapp.utils.TimeUtils
 import pl.droidsonroids.gif.GifDrawable
 
 
 class DayFinishFragment : Fragment() {
     private lateinit var binding: DayFinishFragmentBinding
+    private var ab: ActionBar? = null
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -29,6 +27,8 @@ class DayFinishFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        ab = (activity as AppCompatActivity).supportActionBar
+        ab?.title = getString(R.string.done_ok)
         binding.imMain.setImageDrawable(GifDrawable((activity as AppCompatActivity).assets,
             "done.gif"))
         binding.bDone.setOnClickListener {

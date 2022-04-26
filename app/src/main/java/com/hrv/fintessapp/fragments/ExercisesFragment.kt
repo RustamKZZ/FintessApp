@@ -6,6 +6,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.appcompat.app.ActionBar
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
@@ -22,6 +23,7 @@ class ExercisesFragment : Fragment() {
     private lateinit var binding: ExerciseBinding
     private var exerciseCounter = 0
     private var exList: ArrayList<ExerciseModel>? = null
+    private var ab: ActionBar? = null
     private val model: com.hrv.fintessapp.utils.MainViewModel by activityViewModels()
 
 
@@ -35,7 +37,7 @@ class ExercisesFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
+        ab = (activity as AppCompatActivity).supportActionBar
         model.mutableListExercise.observe(viewLifecycleOwner) {
             exList = it
             nextExercise()
@@ -62,7 +64,8 @@ class ExercisesFragment : Fragment() {
     private fun showExercise(exercise: ExerciseModel) = with(binding) {
         imMain.setImageDrawable(GifDrawable(root.context.assets, exercise.image))
         tvName.text = exercise.name
-
+        val title = "$exerciseCounter/ ${exList?.size}"
+        ab?.title = title
     }
 
     private fun SetExerciseType(exercise: ExerciseModel){
