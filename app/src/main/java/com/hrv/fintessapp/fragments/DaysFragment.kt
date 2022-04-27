@@ -15,7 +15,6 @@ import com.hrv.fintessapp.adapters.DaysAdapter
 import com.hrv.fintessapp.adapters.ExerciseModel
 import com.hrv.fintessapp.databinding.FragmentDaysBinding
 import com.hrv.fintessapp.utils.FragmentManager
-import com.hrv.fintessapp.utils.MainViewModel as MainViewModel1
 
 
 class DaysFragment : Fragment(), DaysAdapter.Listener {
@@ -48,7 +47,7 @@ class DaysFragment : Fragment(), DaysAdapter.Listener {
     private fun fillDaysArray(): ArrayList<DayModel> {
         val tArray = ArrayList<DayModel>()
         resources.getStringArray(R.array.day_exercises).forEach {
-            tArray.add(DayModel(it, false))
+            tArray.add(DayModel(it, 0, false))
         }
         return tArray
     }
@@ -74,8 +73,11 @@ class DaysFragment : Fragment(), DaysAdapter.Listener {
     }
 
     override fun onClick(day: DayModel) {
-        FragmentManager.setFragment(ExercisesListFragment.newInstance(), activity as AppCompatActivity)
         fillExerciseList(day)
+        model.currentDay = day.dayNumber
+        FragmentManager.setFragment(ExercisesListFragment.newInstance(),
+            activity as AppCompatActivity)
+
 
     }
 }
