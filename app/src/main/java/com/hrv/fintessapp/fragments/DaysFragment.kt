@@ -24,7 +24,8 @@ class DaysFragment : Fragment(), DaysAdapter.Listener {
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?): View {
+        savedInstanceState: Bundle?
+    ): View {
         binding = FragmentDaysBinding.inflate(inflater, container, false)
         return binding.root
     }
@@ -52,13 +53,13 @@ class DaysFragment : Fragment(), DaysAdapter.Listener {
         return tArray
     }
 
-    private fun fillExerciseList(day: DayModel){
+    private fun fillExerciseList(day: DayModel) {
         val tempList = ArrayList<ExerciseModel>()
         day.exercises.split(",").forEach {
             val exerciseList = resources.getStringArray(R.array.exercise)
             val exercise = exerciseList[it.toInt()]
             val exerciseArray = exercise.split("|")
-            tempList.add(ExerciseModel(exerciseArray[0], exerciseArray[1], exerciseArray[2]))
+            tempList.add(ExerciseModel(exerciseArray[0], exerciseArray[1], false, exerciseArray[2]))
         }
         model.mutableListExercise.value = tempList
 
@@ -75,8 +76,10 @@ class DaysFragment : Fragment(), DaysAdapter.Listener {
     override fun onClick(day: DayModel) {
         fillExerciseList(day)
         model.currentDay = day.dayNumber
-        FragmentManager.setFragment(ExercisesListFragment.newInstance(),
-            activity as AppCompatActivity)
+        FragmentManager.setFragment(
+            ExercisesListFragment.newInstance(),
+            activity as AppCompatActivity
+        )
 
 
     }
