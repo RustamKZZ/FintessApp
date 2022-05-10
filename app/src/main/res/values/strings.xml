@@ -12,5 +12,7 @@
     <string name="next_done_button">Отлично</string>
     <string name="done_ok">Выполнено</string>
     <string name="waiting">Приготовтесь</string>
+    <string name="rest">Осталось:</string>
+    <string name="rest_days">дней</string>
 
 </resources>
