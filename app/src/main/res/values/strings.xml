@@ -14,5 +14,6 @@
     <string name="waiting">Приготовтесь</string>
     <string name="rest">Осталось:</string>
     <string name="rest_days">дней</string>
+    <string name="reset">Сбросить</string>
 
 </resources>
