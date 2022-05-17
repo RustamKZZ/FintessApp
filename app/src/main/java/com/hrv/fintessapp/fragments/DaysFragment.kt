@@ -12,6 +12,7 @@ import com.hrv.fintessapp.adapters.DayModel
 import com.hrv.fintessapp.adapters.DaysAdapter
 import com.hrv.fintessapp.adapters.ExerciseModel
 import com.hrv.fintessapp.databinding.FragmentDaysBinding
+import com.hrv.fintessapp.utils.DialogManager
 import com.hrv.fintessapp.utils.FragmentManager
 
 
@@ -45,9 +46,16 @@ class DaysFragment : Fragment(), DaysAdapter.Listener {
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        if (item.itemId == R.id.reset){
-            model.pref?.edit()?.clear()?.apply()
-            adapter.submitList(fillDaysArray())
+        if (item.itemId == R.id.reset) {
+            DialogManager.showDialog(activity as AppCompatActivity,
+                R.string.reset_days_message,
+                object : DialogManager.Listener {
+                    override fun onClick() {
+                        model.pref?.edit()?.clear()?.apply()
+                        adapter.submitList(fillDaysArray())
+                    }
+                }
+            )
         }
         return super.onOptionsItemSelected(item)
     }
@@ -79,7 +87,7 @@ class DaysFragment : Fragment(), DaysAdapter.Listener {
     }
 
     private fun updateRestDaysUI(restDays: Int, days: Int) = with(binding){
-        val rDays = getString(R.string.rest) + " $restDays" + getString(R.string.rest_days)
+        val rDays = getString(R.string.rest) + " $restDays " + getString(R.string.rest_days)
         tvRestDays.text = rDays
         progressBar.progress = days - restDays
     }
@@ -105,10 +113,27 @@ class DaysFragment : Fragment(), DaysAdapter.Listener {
     }
 
     override fun onClick(day: DayModel) {
-        fillExerciseList(day)
-        model.currentDay = day.dayNumber
-        FragmentManager.setFragment(ExercisesListFragment.newInstance(),
-            activity as AppCompatActivity)
+        if (!day.isDone) {
+            fillExerciseList(day)
+            model.currentDay = day.dayNumber
+            FragmentManager.setFragment(
+                ExercisesListFragment.newInstance(),
+                activity as AppCompatActivity)
+        } else {
+            DialogManager.showDialog(activity as AppCompatActivity,
+                R.string.reset_day_message,
+                object : DialogManager.Listener {
+                    override fun onClick() {
+                        model.savePref(day.dayNumber.toString(), 0)
+                        fillExerciseList(day)
+                        model.currentDay = day.dayNumber
+                        FragmentManager.setFragment(
+                            ExercisesListFragment.newInstance(),
+                            activity as AppCompatActivity)
+                    }
+                }
+            )
 
+        }
     }
 }
