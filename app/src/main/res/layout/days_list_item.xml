@@ -13,6 +13,8 @@
         android:clickable="false"
         android:elevation="10dp"
         android:focusable="auto"
+        android:textColorHighlight="#F44336"
+        android:textColorLink="#DA5F5F"
         app:layout_constraintBottom_toBottomOf="@+id/cardView2"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="@+id/cardView2" />
